@@ -2,15 +2,14 @@
 
 /**
  * _isupper - uppercase character
- * c: check char
- *
- * Return: 0 or 1
+ * @c: the charagter to be checked
+ * Return: 1 for uppercase or 0 for anything else
  */
 int _isupper(int c)
 {
-if
-(c >= 'A' && c <= 'Z')
-return (1);
-else
-return (0);
+	if (c >= 'A' && c <= 'Z')
+	{
+	return (1);
+	}
+	return (0);
 }
