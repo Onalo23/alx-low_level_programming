@@ -1,6 +1,9 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+char *create_buffer(char *file);
+void close_file(int yu);
 /**
  * create_buffer - let 1024 bytes be allocated to the buffer.
  * @file: The file name buffer is storing character
@@ -13,11 +16,12 @@ buffer = malloc(sizeof(char) * 1024);
 if (buffer == NULL)
 {
 dprintf(STDERR_FILENO,
-		"Error: Can't write to %s\n", file);
+	"Error: couldn't write to %s\n", file);
 exit(99);
 }
 return (buffer);
 }
+
 /**
  * close_file - op that Closes the file descriptor
  * @yu: shotdown the file discriptor
@@ -28,16 +32,19 @@ int x;
 x = close(yu);
 if (x == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't close yu %d\n", yu);
+dprintf(STDERR_FILENO,
+	"Error: couldn't close yu %d\n", yu);
 exit(100);
 }
 }
+
 /**
  * main - copy file contents of other files
  * @argc: the number programme arguments
  * @argv: the pointer of an argumentative arrays
  * Return: 0 for success
- * Description: when the argument count is not correct, let 97 be the exit code
+ *
+ * execute: when the argument count is not correct, let 97 be the exit code
  * when file_from is none existing or unable to read, let 98 be the exit code
  * when the file_to couldn't created or write, let 99 be the exit code
  * If both file_to and file_from could not closed, let 100 be the exit code
@@ -48,7 +55,8 @@ int from, to, r, z;
 char *buffer;
 if (argc != 3)
 {
-dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+dprintf(STDERR_FILENO,
+	"Usage: cp file_from file_to\n");
 exit(97);
 }
 buffer = create_buffer(argv[2]);
@@ -59,7 +67,7 @@ do {
 if (from == -1 || r == -1)
 {
 dprintf(STDERR_FILENO,
-		"Error: Can't read from file %s\n", argv[1]);
+	"Error: couldn't read from file %s\n", argv[1]);
 free(buffer);
 exit(98);
 }
@@ -67,7 +75,7 @@ z = write(to, buffer, r);
 if (to == -1 || z == -1)
 {
 dprintf(STDERR_FILENO,
-		"Error: Can't write to %s\n", argv[2]);
+	"Error: couldn't write to %s\n", argv[2]);
 free(buffer);
 exit(99);
 }
