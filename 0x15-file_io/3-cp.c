@@ -14,7 +14,7 @@ char *buffer;
 buffer = malloc(sizeof(char) * 1024);
 if (buffer == NULL)
 {
-dprintf(STDERR_FILENO, "Error: no access %s\n", file);
+dprintf(STDERR_FILENO, "Error: Cannot write to %s\n", file);
 exit(99);
 }
 return (buffer);
@@ -22,15 +22,15 @@ return (buffer);
 
 /**
  * close_file - Close file descript.
- * @bd: file narrator to be closed.
+ * @fd: file narrator to be closed.
  */
-void close_file(int bd)
+void close_file(int fd)
 {
 int i;
-i = close(bd);
+i = close(fd);
 if (i == -1)
 {
-dprintf(STDERR_FILENO, "Error: bd not close %d\n", bd);
+dprintf(STDERR_FILENO, "Error: Cannot close fd %d\n", fd);
 exit(100);
 }
 }
@@ -63,7 +63,7 @@ do {
 if (from == -1 || i == -1)
 {
 dprintf(STDERR_FILENO,
-		"Error: file not readable %s\n", argv[1]);
+		"Error: cannot read from file %s\n", argv[1]);
 free(buffer);
 exit(98);
 }
@@ -71,7 +71,7 @@ z = write(to, buffer, i);
 if (to == -1 || z == -1)
 {
 dprintf(STDERR_FILENO,
-		"Error: not writable %s\n", argv[2]);
+		"Error: cannot write to %s\n", argv[2]);
 free(buffer);
 exit(99);
 }
