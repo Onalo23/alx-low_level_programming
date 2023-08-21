@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_index - Inserts a node at a given position
+ * insert_dnodeint_at_index - inserts a node at a given index of a dlistint_t list
  *
  * @h: the head of the list
  * @idx: the index of the new node
