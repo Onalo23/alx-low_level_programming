@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_index - Insert a node at a given index
+ * insert_dnodeint_at_index - Inserts a node at a given position
  *
  * @h: the head of the list
  * @idx: the index of the new node
